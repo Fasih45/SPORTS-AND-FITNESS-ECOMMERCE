@@ -1,0 +1,25 @@
+
+<body>
+    <div class="container">
+        <form action="/updatedone/<%= user.id %>" enctype="multipart/form-data" method="post">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter name" name="id" value="<%= user.title %>" required>
+          </div>
+          <div class="form-group">
+            <label for="email">price:</label>
+            <input type="number" class="form-control" id="email"
+              placeholder="Enter price" name="price1" value="<%= user.price %>" required>
+          </div>
+  
+          <div class="form-group">
+            <input type="file" name="image" accept='image/*'>
+          </div>
+          <input type="submit"   value="Sumbit">
+        </form>
+  
+       
+      </div>
+    
+      
+</body>

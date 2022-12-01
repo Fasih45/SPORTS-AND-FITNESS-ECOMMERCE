@@ -1,0 +1,102 @@
+
+
+
+<style>
+    .login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+
+n-container form{
+    padding: 10%;
+}
+
+.login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+
+
+.login-form-1 .ForgetPwd{
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+</style>
+
+
+
+<body>
+
+    <div class="container login-container">
+        
+            <div class=" offset-3 col-md-6 login-form-1">
+                <h3>Login  Form </h3>
+                <% if (message.length !=0) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= message%> 
+                      </div>
+                
+                      <%} %>
+                
+                    <form class="row g-3 needs-validation" novalidate  action="/user/login/check" method="post" name="form1">
+                    <div class="col-md-6">
+                        <label for="validationCustomUsername" class="form-label">Username</label>
+                        <div class="input-group has-validation">
+                          <span class="input-group-text" id="inputGroupPrepend">@</span>
+                          <input type="text" class="form-control" name="username1" aria-describedby="inputGroupPrepend" required>
+                          <div class="invalid-feedback">
+                            Please Enter a username.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="validationCustom03" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="v" name="pass1"required>
+                        <div class="invalid-feedback">
+                          Please provide a valid password.
+                        </div>
+                      </div>
+                    <div class="form-group">
+                        <a href="/email/forgetpass" class="ForgetPwd">Forget Password?</a>
+                    </div>
+
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Submit form</button>
+                      </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+<script>
+    (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+</body>

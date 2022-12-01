@@ -1,0 +1,100 @@
+<body>
+    <div>
+      <a   href="/a" class="btn btn-outline-primary">Add</a>
+      <a   href="/long" class="btn btn-outline-danger">change layout</a>
+      <a   href="/logoutuser" class="btn btn-outline-danger">Logout</a>
+      
+    </div>
+    
+  
+  
+    <div class="row mt-1 mb-3">
+  
+      <div class=" offset-3 col-3">
+  
+        <form action="/se" method="post">
+          <div class="input-group">
+            <input type="search" class="form-control rounded"
+              placeholder="Search" aria-label="Search"
+              aria-describedby="search-addon" name="id"/>
+            <button type="submit" class="btn btn-outline-primary">search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="row">
+  <% users.forEach(function(user){ %>
+  <div class="col-4">
+  
+  
+    <div class="card" style="width: 18rem;">
+      <a href="/detail/<%= user.title%>"><img class="img-thumbnail" src="<%= user.file_src%>" alt=""></a>
+        
+      
+      <div class="card-body">
+        <h3 class="card-title">Product: <%= user.title%></h3>
+        <h6 class="card-title">Price: RS<%= user.price%></h6>
+        <p class="card-text">Some quick example text to build on the card
+          title and make up the bulk of the card's content.</p>
+        <a   href="updatep/<%= user.id %>" class="btn btn-primary">Edit</a>
+        <a href="deletep/<%= user.id %>" class="btn btn-primary">Delete</a>
+        
+      </div>
+    </div>
+  
+  
+  
+  
+  </div>
+  <% }); %>
+  </div>
+  
+        <!--Display the links to the pages-->
+  
+  
+  
+  
+  
+        <nav aria-label="...">
+          <ul class="pagination">
+            <% if(page> 1) { %>
+              <li class="page-item">
+  
+                <a class="page-link" href="/allProducts?page=<%=page-1%>">Before</a>
+              </li>
+              <% } %>
+  
+                <!-- 
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">2</span>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                <% for(let i= iterator; i <= endingLink; i++) { %>
+                  <% if(i === page) { %>
+                    <li class="page-item active" aria-current="page">
+                      <a class="page-link" href="/allProducts?page=<%=i%>"><%=i%></a>
+                      </li>
+                      <% continue; %>
+                        <% } %>
+                          <li class="page-item">
+                            <a class="page-link" href="/allProducts?page=<%=i%>"><%=i%></a>
+                            </li>
+                            <% } %>
+  
+  
+  
+                              <% if(page <numberOfPages) { %>
+                                <li class="page-item">
+  
+                                  <a class="page-link" href="/allProducts?page=<%=page+1%>">After</a>
+                                </li>
+  
+                                <% } %>
+                                </ul>
+                              </nav>
+  
+  
+                            </body>
