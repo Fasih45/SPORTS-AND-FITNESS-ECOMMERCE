@@ -1,0 +1,385 @@
+
+<style>
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+	main{
+		padding:0%;
+		margin: 5%;
+		display: block;
+		
+	}
+	.comment-section{
+		max-height: 25vh;
+		max-width: 90%;
+		background-color: #3f3f3f;
+		overflow-y:scroll;
+	}
+	.comment{
+		height: 10%;
+		padding: 2%;
+		margin: 2%;
+		background-color: #ffff;
+		color: black;
+	}
+
+
+
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,body{
+	width: 100%;
+	height: 100%;
+}
+
+body{
+	font-family: Arial, sans-serif;
+}
+
+
+
+.rating-wrap {
+	max-width: 480px;
+	margin: auto;
+	padding: 15px;
+	box-shadow: 0 0 3px 0 rgba(0,0,0,.2);
+	text-align: center;
+}
+
+.center{
+	width: 162px; 
+	margin: auto;
+}
+
+
+ #rating-value {	
+	width: 110px;
+	margin: 40px auto 0;
+	padding: 10px 5px;
+	text-align: center;
+	box-shadow: inset 0 0 2px 1px rgba(46,204,113,.2);
+}
+
+/*styling star rating*/
+.rating{
+	border: none;
+	float: left;
+}
+
+.rating > input{
+	display: none;
+}
+
+.rating > label:before{
+	content: '\f005';
+	font-family: FontAwesome;
+	margin: 5px;
+	font-size: 1.5rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.rating > .half:before{
+	content: '\f089';
+	position: absolute;
+	cursor: pointer;
+}
+
+
+.rating > label{
+	color: #ddd;
+	float: right;
+	cursor: pointer;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover, 
+.rating:not(:checked) > label:hover ~ label{
+	color: #2ce679;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label{
+	color: #2ddc76;
+}
+
+</style>
+
+
+    </head>
+    <body>
+    
+   
+    
+      
+
+
+
+
+<body>
+  <% if (message.length !=0) { %>
+    <!-- <div class="alert alert-danger" role="alert">
+            <%= message%> 
+          </div> -->
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong><%= message%> </strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+  
+            <%} %>
+
+	<h2>reviews:</h2>
+
+  
+	<main>
+		<div class="comment-section">
+            <div  style="font-size:10px ;" class="container " >
+                <% users.forEach(function(user){ %>
+                <div class="row d-flex  my-1">
+                    <div class="col-md-4">
+                        <div class="card text-dark">
+                         
+                            <hr class="my-0" style="height: 1px;" />
+        
+                            <div class="card-body p-2">
+                                <div class="d-flex flex-start">
+                                   
+                                    <div>
+                                        <h6 class="fw-bold mb-1"><%= user.user%></h6>
+                                        <div class="d-flex align-items-center mb-1">
+                                            <p class="mb-0">
+                                                <%= user.updatedAt.toLocaleDateString()  %> AT <%= user.updatedAt.toLocaleTimeString()  %>
+                                                <!-- <span class="badge bg-danger">Rejected</span> -->
+                                            </p>
+                                           
+                                        </div>
+                                        <p class="mb-0">
+                                            <%= user.comments  %> 
+                                          
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <hr class="my-0" />
+        
+                        </div>
+                        
+                    </div>
+                    <% }); %>
+                </div>
+                
+        
+          
+            </div>
+		</div>
+	</main>
+
+
+        
+    <section >
+        <div class="container my-2 py-2 text-dark">
+          <div class="row d-flex ">
+            <div class="col-6">
+              <div class="card">
+                <div class="card-body p-4">
+                  <div class="d-flex flex-start w-100">
+                    <div class="w-100">
+                      <h5>Add a comment</h5>
+                      
+
+
+                      <form action="/detail/process?token=<%= id%> " method="post" name="form1">
+                       
+
+                        <div class="form-outline">
+                            <input class="form-control" name="text1" rows="4"></input>
+                            <label class="form-label" for="textAreaExample">What is your view?</label>
+                          </div>
+                          <div class="d-flex justify-content-between mt-3">
+                          
+                        <input type="submit" class="btn btn-danger" value="Send">
+                        </form>
+                    
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+     
+      <div class="container">
+		<div class="rating-wrap">
+			<h2>Star Rating</h2>
+			<div class="center">
+
+                <form action="/requestrating?token=<%= id%>" method="post" name="form1" id="myForm">
+                    <fieldset class="rating">
+
+                    
+                        <input onclick="myFunction()" type="radio" id="star5" name="rating" value="5"/>
+                        <% if (rate[0].rating > 4.5) { %>
+                          <label  style="color:#2ddc76 ;"  for="star5" class="full"  ></label>
+                          <%} else { %>
+                            <label for="star5" class="full" title="Awesome"></label>
+                          <% } %>
+                        
+                        <input  onclick="myFunction()"type="radio" id="star4.5" name="rating" value="4.5"/>
+                        <% if (rate[0].rating > 4) { %>
+                          <label  style="color:#2ddc76 ;"  for="star4.5" class="half"  ></label>
+                          <%} else { %>
+                            <label for="star4.5" class="half"></label>
+                          <% } %>
+                        
+                     
+                        <input  onclick="myFunction()"type="radio" id="star4" name="rating" value="4"/>
+                        <% if (rate[0].rating > 3.5) { %>
+                          <label  style="color:#2ddc76 ;"  for="star4" class="full"  ></label>
+                          <%} else { %>
+                            <label for="star4" class="full"></label>
+                          <% } %>
+                        
+                        
+                        <input onclick="myFunction()" type="radio" id="star3.5" name="rating" value="3.5"/>
+                        <% if (rate[0].rating > 3) { %>
+                          <label  style="color:#2ddc76 ;"  for="star3.5" class="half"  ></label>
+                          <%} else { %>
+                         <label for="star3.5" class="half"></label>
+                          <% } %>
+                       
+                        
+                      
+                        <input onclick="myFunction()" type="radio" id="star3" name="rating" value="3"/>
+                        <% if (rate[0].rating > 2.5) { %>
+                          <label  style="color:#2ddc76 ;"  for="star3" class="full"  ></label>
+                          <%} else { %>
+                            <label for="star3" class="full"></label>
+                          <% } %>
+                       
+                        
+                       
+                        <input  onclick="myFunction()"type="radio" id="star2.5" name="rating" value="2.5"/>
+                        <% if (rate[0].rating > 2) { %>
+                          <label  style="color:#2ddc76 ;"  for="star2.5" class="half"  ></label>
+                          <%} else { %>
+                            <label for="star2.5" class="half"></label>
+                          <% } %>
+                       
+                        <input  onclick="myFunction()"type="radio" id="star2" name="rating" value="2"/>
+                        <% if (rate[0].rating > 1.5) { %>
+                          <label  style="color:#2ddc76 ;"  for="star2" class="full"  id="x1"></label>
+                          <%} else { %>
+                            <label for="star2" class="full"></label>
+                          <% } %>
+                        
+                       
+                        <input  onclick="myFunction()"type="radio" id="star1.5" name="rating" value="1.5"/>
+                        <% if (rate[0].rating > 1) { %>
+                          <label  style="color:#2ddc76 ;"  for="star1.5" class="half"  id="x1"></label>
+                          <%} else { %>
+                            <label for="star1.5" class="half"></label>
+                          <% } %>
+                        
+                       
+                        <input  onclick="myFunction()" type="radio" id="star1"  name="rating" value="1"/>
+                        <% if (rate[0].rating > 0.5) { %>
+                          <label  style="color:#2ddc76 ;"  for="star1" class="full"  id="x1"></label>
+                          <%} else { %>
+                            <label  for="star1" class="full"  id="x1"></label>
+                          <% } %>
+                       
+                        <input onclick="myFunction()"type="radio" id="star0.5" name="rating" value="0.5"/>
+                        <% if (rate[0].rating > 0) { %>
+                          <label style="color:#2ddc76 ;" for="star0.5" class="half"></label>
+                          <%} else { %>
+                            <label for="star0.5" class="half"></label>
+                          <% } %>
+                       
+                    </fieldset>
+              
+                    
+                    </form>
+
+
+                    
+				
+			</div>
+
+			<h4 id="rating-value"><%= rate[0].rating%>/5 </h4>
+
+		</div>
+	</div>
+
+  <div>
+    <% if (rate[0].quantity > 0) { %>
+
+      <form action="/processcart?token=<%= id%>" method="post">
+        <div class="row">
+          <div class="col-1">
+            <input type="number" name="quantity" class="form-control text-center" value="1"> 
+          </div>
+          
+          <div class="col">
+            <input type="submit" class="btn btn-primary" value="Add to cart">
+          </div>
+        </div>
+
+
+      </form>
+      
+     
+
+      
+    
+      <%} else { %>
+      no
+      <% } %>
+    
+  </div>      
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity=
+    "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous">
+</script>
+    <script>
+
+      // let x=0;
+      // if(x==0){
+      //   document.getElementById("x1").click();
+      //   x=1;
+      // }
+
+     
+
+let star = document.querySelectorAll('input');
+let showValue = document.querySelector('#rating-value');
+
+for (let i = 0; i < star.length; i++) {
+	star[i].addEventListener('click', function() {
+		i = this.value;
+
+		// showValue.innerHTML = i + " /5";
+	});
+}
+    function myFunction() {
+  document.getElementById("myForm").submit();
+}
+
+
+
+
+
+
+
+    </script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
