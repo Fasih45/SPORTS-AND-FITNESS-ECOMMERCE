@@ -1,0 +1,26 @@
+
+<body>
+    
+
+
+
+
+    <% if (users.length !=0) { %>
+        
+        <% users.forEach(function(user){ %>
+
+            <div class="card mt-3  ms-2" style="width: 18rem;">
+              <a href="/detailadmin/<%= user.title%>"><img class="img-thumbnail" src="<%= user.file_src%>" alt=""></a>
+              <div class="card-body">
+                <h5 class="card-title"><%= user.title%></h5>
+                <p class="card-text">click to get details</p>
+              
+              </div>
+            </div>
+            <% }); %>
+
+
+        <%} else{ %>
+        <h1>No Product found!</h1>
+        <% } %>
+</body>

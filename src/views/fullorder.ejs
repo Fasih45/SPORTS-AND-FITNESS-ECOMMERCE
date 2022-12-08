@@ -1,0 +1,31 @@
+
+<div class="container">
+    <table class="table table-success table-hover">
+
+        <thead>
+          <tr>
+          
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price Each</th>
+            <th scope="col">Subtotall</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            <% order.forEach(function(o){ %>
+          <tr>
+      
+            <td><%= o.title%></td>
+            <td><%= o.quantity%></td>
+            <td><%= o.priceeach%></td>
+            <td>Rs <%= o.subtotal%></td>
+            <td>   <%= o.updatedAt.toLocaleDateString()  %> </td>
+            <td> <a   href="/fullorder/<%= o.orderid%>" class="btn btn-primary">Press to add to done </a></td>
+            
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+</div>

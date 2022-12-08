@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How to store image path in MySQL database using Node js -
+      Laratutorials.com</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <form action="/uploadproduct" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="email" placeholder="Enter name" name="id" required>
+        </div>
+        <div class="form-group">
+          <label for="email">price:</label>
+          <input type="number" class="form-control" id="email"
+            placeholder="Enter price" name="price1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Quantity:</label>
+          <input type="number" class="form-control" id="email"
+            placeholder="Enter price" name="quantity1" required>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+          <textarea name="texta" class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
+        </div>
+
+        <div class="form-group">
+          <input type="file" name="image" accept='image/*'required>
+        </div>
+        <input type="submit" value="Sumbit">
+      </form>
+
+     
+    </div>
+
+
+  </body>
+</html>

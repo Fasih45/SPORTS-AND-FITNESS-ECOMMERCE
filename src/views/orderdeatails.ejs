@@ -1,0 +1,27 @@
+
+<div class="container">
+    <table class="table table-success table-hover">
+
+        <thead>
+          <tr>
+            <th scope="col">OrderID#</th>
+            <th scope="col">User</th>
+            <th scope="col">Grand Total</th>
+            <th scope="col">Date</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% order.forEach(function(o){ %>
+          <tr>
+            <th scope="row"><%= o.orderid%></th>
+            <td><%= o.user%></td>
+            <td>Rs <%= o.grandtotal%></td>
+            <td>   <%= o.updatedAt.toLocaleDateString()  %> </td>
+            <td> <a   href="/fullorder/<%= o.orderid%>" class="btn btn-primary">Details</a></td>
+            
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+</div>
